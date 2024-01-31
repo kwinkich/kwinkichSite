@@ -1,0 +1,34 @@
+.notification {
+	position: absolute;
+	top: 53%;
+	left: 48%;
+	padding: 10px;
+	background-color: #4b607cbd;
+	color: rgb(255, 255, 255);
+	border-radius: 5px;
+	animation: fade 0.5s ease-in-out;
+}
+.notification.fade-out {
+		animation: fadeOut 0.5s ease-in-out;
+}
+
+@keyframes fade {
+	from {
+			opacity: 0;
+			transform: translateY(20px);
+	}
+	to {
+			opacity: 1;
+			transform: translateY(0);
+	}
+}
+@keyframes fadeOut {
+		from {
+				opacity: 1;
+				transform: translateY(0);
+		}
+		to {
+				opacity: 0;
+				transform: translateY(20px);
+		}
+}
