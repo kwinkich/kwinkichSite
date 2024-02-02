@@ -5,13 +5,14 @@ const eth = '0x471119465aE9fe11F92FF32Cd40e901C8a735e2A';
 
 function copyText(crypto) {
 	const inputElement = document.createElement("input");
+	const notification = document.createElement("div");
+
 	inputElement.value = crypto;
 	document.body.appendChild(inputElement);
 	inputElement.select();
 	document.execCommand("copy");
 	document.body.removeChild(inputElement);
 	
-	const notification = document.createElement("div");
 	notification.className = "notification";
 	notification.innerHTML = "Text copied ✅";
 	document.body.appendChild(notification);
@@ -19,6 +20,7 @@ function copyText(crypto) {
 	setTimeout(function() {
 		notification.classList.add("fade-out");
 	}, 1500);
+	
 	setTimeout(function() {
 		document.body.removeChild(notification);
 	}, 2000);
