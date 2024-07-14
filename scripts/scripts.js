@@ -1,7 +1,5 @@
-const trc20 = 'TEjJYatjMZCdxM5Xw9LcxuqqJg5rnC3atk';
+const trc20 = 'THFzAewHcyyr21QByVGYYNw7uzHLwtoyE3';
 const ton = 'UQD61uolNtQIOXRtJaRYbLktcnvGbQJtMs2gpqgrlWFKNO6K';
-const btc = 'bc1qa7uqfahjrgzw7fuzptqpl340k6myhcamh0ju2x';
-const eth = '0x471119465aE9fe11F92FF32Cd40e901C8a735e2A';
 
 function notification() {
 	const notification = document.createElement('div');
