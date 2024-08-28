@@ -1,3 +1,42 @@
 .link {
 	color: #3b82f6;
 }
+
+.link-hover {
+	position: relative;
+}
+
+.link-hover::before {
+	position: absolute;
+	content: '';
+	bottom: -4px;
+	width: 0;
+	height: 2px;
+	background-color: #3b82f6;
+	/* transition: all 0.5s ease-in-out; */
+}
+
+.link-hover:hover::before {
+	animation: underline 1.25s;
+}
+
+.featured {
+	font-weight: 800;
+}
+
+@keyframes underline {
+	0% {
+		left: 0%;
+		width: 0%;
+	}
+
+	50% {
+		left: 0%;
+		width: 100%;
+	}
+
+	100% {
+		left: 100%;
+		width: -50%;
+	}
+}

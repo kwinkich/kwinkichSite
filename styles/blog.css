@@ -1,0 +1,12 @@
+.articles-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 480px);
+	column-gap: 48px;
+	row-gap: 48px;
+}
+
+.article-anim {
+	transition: all 0.3s ease-in-out;
+}
+
+.article-anim:hover {}

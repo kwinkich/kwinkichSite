@@ -111,8 +111,18 @@
 							>
 						</p>
 					</div>
+					<div class="w-max">
+						<button id="connect"></button>
+					</div>
 				</div>
 			</div>
 		</div>
+		<script src="https://unpkg.com/@tonconnect/ui@0.0.9/dist/tonconnect-ui.min.js"></script>
+		<script>
+			const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+				manifestUrl: 'http://kwinkich.fun/manifest.json',
+				buttonRootId: 'connect',
+			});
+		</script>
 	</body>
 </html>
