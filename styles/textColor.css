@@ -24,6 +24,21 @@
 	font-weight: 800;
 }
 
+.input {
+	border: 1px solid #3b82f6;
+	background: none;
+	padding: 12px 12px 12px;
+	color: white;
+}
+
+#connectWallet {
+	display: none;
+}
+
+.hidelol {
+	display: none;
+}
+
 @keyframes underline {
 	0% {
 		left: 0%;

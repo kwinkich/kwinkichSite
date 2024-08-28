@@ -14,6 +14,7 @@
 		<div class="flex container mx-auto max-w-fit h-screen items-center">
 			<div class="flex flex-col items-center">
 				<div class="w-fit">
+					<div id="connect" style="margin-bottom: 48px"></div>
 					<div class="w-max">
 						<img
 							style="height: 196px; width: 196px"
@@ -36,31 +37,43 @@
 									alt="tether icon"
 							/></span>
 							<p class="text-lg text-white">
-								trc20:
+								trc20
 								<span
 									id="copy"
 									class="underline cursor-pointer link"
 									onclick="copyText(trc20)"
-									>THFz...oyE3</span
-								>
-							</p>
-						</div>
-						<div class="w-max flex gap-x-2.5">
-							<span
-								><img
-									class="w-[30px] h-[30px]"
-									src="../public/ton.svg"
-									alt="ton icon"
-							/></span>
-							<p class="text-lg text-white">
-								ton:
-								<span
-									id="copy"
-									class="underline cursor-pointer link"
-									onclick="copyText(ton)"
 									>UQD6...NO6K</span
 								>
 							</p>
+						</div>
+						<div class="w-max flex flex-col gap-y-2">
+							<span class="flex gap-x-2.5">
+								<img
+									class="w-[30px] h-[30px]"
+									src="../public/ton.svg"
+									alt="ton icon"
+								/>
+								<p class="text-lg text-white">
+									ton
+									<span
+										id="copy"
+										class="underline cursor-pointer link trueWallConn
+										onclick="copyText(ton)"
+										>THFz...oyE3</span
+									>
+								</p>
+							</span>
+							<div id="connectWallet" class="flex flex-col gap-y-2">
+								<input
+									id="amountI"
+									class="input"
+									type="number"
+									placeholder="Ton Ammount"
+								/>
+								<button id="btnTx" onclick="sendTx()" class="underline link">
+									Send thx
+								</button>
+							</div>
 						</div>
 					</div>
 					<div class="w-max">
@@ -75,5 +88,60 @@
 			</div>
 		</div>
 		<script src="../scripts/scripts.js"></script>
+		<script src="https://unpkg.com/@tonconnect/ui@0.0.9/dist/tonconnect-ui.min.js"></script>
+		<script>
+			let amount = 0;
+			let comment = '';
+			const isConnectWalletBlock = document.querySelector('#connectWallet');
+			let span = document.querySelector('.trueWallConn');
+			const isConnectWallet = false;
+			const buttonTx = document.querySelector('#btnTx');
+			const amountI = document.querySelector('#amountI');
+
+			amountI.addEventListener('change', (e) => (amount = e.target.value));
+
+			const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+				manifestUrl: 'https://kwinkich.fun/manifest.json',
+				buttonRootId: 'connect',
+			});
+
+			if (tonConnectUI.walletInfo === null) {
+				const connectBlock = document.querySelector('#connect > div > button');
+				connectBlock.style.width = '100%';
+				connectBlock.style.justifyContent = 'center';
+			}
+
+			const unsubscribe = tonConnectUI.onStatusChange((walletAndwalletInfo) => {
+				if (tonConnectUI.walletInfo !== null) {
+					const connectBlock2 = document.querySelector(
+						'#connect > div > div > button'
+					);
+					connectBlock2.style.width = '100%';
+					connectBlock2.style.justifyContent = 'center';
+
+					isConnectWalletBlock.style.display = 'flex';
+					span.classList.add('hidelol');
+				}
+			});
+			async function sendTx() {
+				const amountValue = Number(amount) * 10e8;
+				const transaction = {
+					validUntil: Math.floor(Date.now() / 1000) + 60, // 60 sec
+					messages: [
+						{
+							address: 'UQD61uolNtQIOXRtJaRYbLktcnvGbQJtMs2gpqgrlWFKNO6K',
+							amount: amountValue.toString(),
+						},
+					],
+				};
+
+				try {
+					const result = await tonConnectUI.sendTransaction(transaction);
+					amountI.value = '';
+				} catch (e) {
+					console.error('Transaction error:', e);
+				}
+			}
+		</script>
 	</body>
 </html>
